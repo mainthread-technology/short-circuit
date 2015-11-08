@@ -1,0 +1,62 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.4.0-beta6'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+project.ext.preDexLibs = !project.hasProperty('disablePreDex')
+
+subprojects {
+    project.plugins.whenPluginAdded { plugin ->
+        if ("com.android.build.gradle.AppPlugin".equals(plugin.class.name)) {
+            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+        } else if ("com.android.build.gradle.LibraryPlugin".equals(plugin.class.name)) {
+            project.android.dexOptions.preDexLibraries = rootProject.ext.preDexLibs
+        }
+    }
+
+    ext {
+        gitSha = { ->
+            try {
+                def stdout = new ByteArrayOutputStream()
+                exec {
+                    commandLine 'git', 'rev-parse', '--short', 'HEAD'
+                    standardOutput = stdout
+                }
+                return stdout.toString().trim()
+            } catch (ignored) {
+                return null;
+            }
+        }
+
+        versionMajor = 0
+        versionMinor = 1
+        versionPatch = 0
+        versionBuild = 0 // bump for dogfood builds, public betas, etc.
+
+        buildTools = "23.0.1"
+        compileAndTargetSdkLevel = 23
+        minSdkLevel = 21
+        commonPlayServicesVersion = '8.1.0'
+        commonSupportLibraryVersion = '23.1.0'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

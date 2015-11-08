@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    android:background="@android:color/white"
+    tools:showIn="@layout/app_bar_main">
+
+    <TextView
+        android:id="@+id/current_charge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/battery"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:textSize="30sp"
+        android:textColor="@android:color/black"
+        android:text="Hello World!" />
+
+    <technology.mainthread.shortcircuit.views.BatteryView
+        android:id="@+id/battery"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <TextView android:id="@+id/gameOver"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="55sp"
+        android:textStyle="bold"
+        android:textColor="#EE0000"
+        android:text="GAME\nOVER"/>
+
+    <Button android:id="@+id/add"
+        android:layout_toRightOf="@+id/minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="- 10%"/>
+
+    <Button android:id="@+id/minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+ 10%"/>
+</RelativeLayout>
