@@ -37,9 +37,9 @@ Card ID | Card Effect
 3 | Charge 20%
 4 | Charge 30%
 5 | Drain 10%
-6 | Drain 10% * 2
+6 | Drain 10%
 7 | Drain 20%
-8 | Drain 30% * 2
+8 | Drain 30%
 9 | Drain 40%
 10 | Drain 50%
 11 | Drain half your current charge!
